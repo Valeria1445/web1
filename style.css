@@ -1,4 +1,4 @@
-
+/* style.css – нежно-сиренево-мятная тема (упрощённая) */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +20,6 @@ body {
     border-radius: 35px;
     box-shadow: 0 20px 35px rgba(96, 68, 128, 0.15);
     overflow: hidden;
-    backdrop-filter: blur(2px);
     border: 1px solid #cfc3e8;
 }
 
@@ -37,7 +36,6 @@ h1 {
     letter-spacing: -0.5px;
     margin-bottom: 8px;
     font-weight: 600;
-    text-shadow: 1px 1px 0 #f2ecff;
 }
 
 .subtitle {
@@ -57,14 +55,7 @@ h1 {
     margin: 30px;
     border-radius: 28px;
     padding: 25px;
-    transition: all 0.2s;
     border: 1px solid #e0d6f0;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.03);
-}
-
-.task:hover {
-    border-color: #b6a0d4;
-    box-shadow: 0 8px 20px rgba(95, 75, 139, 0.1);
 }
 
 h2 {
@@ -127,13 +118,6 @@ h2 {
     max-width: 100%;
     border-radius: 22px;
     border: 1px solid #cfc3e8;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-    transition: 0.2s;
-}
-
-.screenshot img:hover {
-    transform: scale(1.01);
-    border-color: #b6a0d4;
 }
 
 .caption {
