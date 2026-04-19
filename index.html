@@ -3,305 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отчёт по лабораторной работе №2</title>
+    <title>лабораторная работа №1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Отчёт по лабораторной работе №2</h1>
-        
+<div class="container">
+    <header>
+        <h1>Лабораторная работа №1</h1>
+    </header>
 
-        
-        <section class="task">
-            <h2>Подготовка к выполнению работы</h2>
-
-            
-            <div class="subtask">
-                <h3>Содержимое локальной папки</h3>
-                <div class="description">
-                    <p>В папке <code>laba2</code> находятся все необходимые файлы: скриншоты, <code>file.tar.gz</code>, <code>image.png</code>, <code>index.php</code>, <code>index.html</code> и <code>style.css</code>.</p>
-                </div>
-                <div class="screenshot">
-                    <img src="01.png" alt="Список файлов">
-                    <p class="caption">Скриншот 01: Содержимое папки laba2</p>
-                </div>
+   
+    <section class="task">
+        <h2>1. Подключение к учебному серверу по SSH</h2>
+        <div class="step">
+            <h3>Настройка PuTTY</h3>
+            <div class="desc">
+                <p>Программа PuTTY настроена для подключения к серверу <code>kubsu-dev.ru</code> на нестандартный порт <strong>58528</strong>. Тип соединения — SSH.</p>
             </div>
+            <div class="screenshot">
+                <img src="0.1.png" alt="Настройки PuTTY">
+                <div class="caption">Скриншот 0.1: Конфигурация PuTTY</div>
+            </div>
+        </div>
+        <div class="step">
+            <h3>Успешный вход в систему</h3>
+            <div class="desc">
+                <p>После ввода логина <code>u82358</code> и пароля получено приветствие Ubuntu и командная строка.</p>
+            </div>
+            <div class="screenshot">
+                <img src="0.2.png" alt="Успешный вход">
+                <div class="caption">Скриншот 0.2: Сессия после авторизации</div>
+            </div>
+        </div>
+    </section>
 
-           
-            <div class="subtask">
-                <h3>Инициализация Git и отправка на GitHub</h3>
-                <div class="command">
-                    <strong>Команды:</strong>
-                    <pre><code>git init
+    <section class="task">
+        <h2>2. Определение IP-адреса kubsu.ru</h2>
+        <div class="step">
+            <div class="command">ping -c 7 kubsu.ru</div>
+            <div class="desc">
+                <p>Утилита <code>ping</code> отправляет ICMP-запросы. В первой строке вывода указан IP-адрес сервера <strong>185.13.84.92</strong>. Все 7 пакетов доставлены, потерь нет.</p>
+            </div>
+            <div class="screenshot">
+                <img src="1.png" alt="Результат ping">
+                <div class="caption">Скриншот 1: Вывод команды ping</div>
+            </div>
+        </div>
+    </section>
+
+  
+    <section class="task">
+        <h2>3. Получение A и MX записей доменов</h2>
+        <div class="step">
+            <h3>A-запись kubsu.ru</h3>
+            <div class="command">nslookup -type=A kubsu.ru</div>
+            <div class="desc">IP-адрес: <strong>185.13.84.92</strong> (совпадает с результатом ping).</div>
+            <div class="screenshot"><img src="2.png" alt="A-запись kubsu.ru"><div class="caption">Скриншот 2: A-запись kubsu.ru</div></div>
+        </div>
+        <div class="step">
+            <h3>MX-запись kubsu.ru</h3>
+            <div class="command">nslookup -type=MX kubsu.ru</div>
+            <div class="desc">
+                <p>Почтовые серверы с приоритетами:</p>
+                <ul>
+                    <li>10 → <code>mx2.kubannet.ru</code></li>
+                    <li>20 → <code>mx.kubannet.ru</code></li>
+                    <li>50 → <code>mx.kubsu.ru</code></li>
+                </ul>
+            </div>
+            <div class="screenshot"><img src="3.png" alt="MX-запись kubsu.ru"><div class="caption">Скриншот 3: MX-запись kubsu.ru</div></div>
+        </div>
+        <div class="step">
+            <h3>A-запись kubsu-dev.ru</h3>
+            <div class="command">nslookup -type=A kubsu-dev.ru</div>
+            <div class="desc">IP-адрес: <strong>212.192.134.135</strong>.</div>
+            <div class="screenshot"><img src="4.png" alt="A-запись kubsu-dev.ru"><div class="caption">Скриншот 4: A-запись kubsu-dev.ru</div></div>
+        </div>
+        <div class="step">
+            <h3>MX-запись kubsu-dev.ru</h3>
+            <div class="command">nslookup -type=MX kubsu-dev.ru</div>
+            <div class="desc">
+                <p>Домен не имеет собственных почтовых серверов (ответ <code>No answer</code>). Авторитативные DNS-серверы: <code>nsl.nameself.com</code>, <code>support.regtime.net</code>.</p>
+            </div>
+            <div class="screenshot"><img src="5.png" alt="MX-запись kubsu-dev.ru"><div class="caption">Скриншот 5: MX-запись kubsu-dev.ru</div></div>
+        </div>
+    </section>
+
+    
+    <section class="task">
+        <h2>4. Дата регистрации доменов</h2>
+        <div class="step">
+            <h3>kubsu.ru</h3>
+            <div class="command">whois kubsu.ru</div>
+            <div class="desc">
+                <p>Дата регистрации: <strong>1998-03-28T12:18:30Z</strong> (28 марта 1998 года).<br>
+                Срок действия оплачен до <strong>30 апреля 2026 года</strong>.</p>
+            </div>
+            <div class="screenshot"><img src="6.png" alt="whois kubsu.ru"><div class="caption">Скриншот 6: whois kubsu.ru</div></div>
+        </div>
+        <div class="step">
+            <h3>kubsu-dev.ru</h3>
+            <div class="command">whois kubsu-dev.ru</div>
+            <div class="desc">
+                <p>Дата регистрации: <strong>2020-02-12T15:55:06Z</strong> (12 февраля 2020 года).<br>
+                Срок действия оплачен до <strong>12 февраля 2027 года</strong>.</p>
+            </div>
+            <div class="screenshot"><img src="7.png" alt="whois kubsu-dev.ru"><div class="caption">Скриншот 7: whois kubsu-dev.ru</div></div>
+        </div>
+    </section>
+
+  
+    <section class="task">
+        <h2>5. Создание веб-страницы и работа с Git</h2>
+        <div class="step">
+            <h3>5.1. Локальные файлы</h3>
+            <div class="desc">В папке <code>web1</code> собраны все скриншоты, <code>index.html</code> и <code>style.css</code>.</div>
+            <div class="screenshot"><img src="8.png" alt="Содержимое папки"><div class="caption">Скриншот 8: Локальные файлы</div></div>
+        </div>
+        <div class="step">
+            <h3>5.2. Инициализация Git и отправка на GitHub</h3>
+            <div class="command">
+                <pre>git init
 git add .
 git commit -m "first commit"
 git branch -M main
-git remote add origin git@github.com:Rusificator/web-hw2.git
-git push -u origin main</code></pre>
-                </div>
-                <div class="description">
-                    <p>Локальный репозиторий создан, все файлы добавлены, создан коммит. После связывания с удалённым репозиторием изменения успешно отправлены на GitHub.</p>
-                </div>
-                <div class="screenshot">
-                    <img src="02.png" alt="Git push">
-                    <p class="caption">Скриншот 02: Отправка файлов на GitHub</p>
-                </div>
+git remote add origin https://github.com/Valeria1445/web1.git
+git push -u origin main</pre>
             </div>
-
-           
-            <div class="subtask">
-                <h3>Клонирование репозитория на сервер</h3>
-                <div class="command">
-                    <strong>Команды на сервере:</strong>
-                    <pre><code>git clone git@github.com:Rusificator/web-hw2.git
-mkdir -p ~/www/hw2
-cp -r ~/web-hw2/* ~/www/hw2/</code></pre>
-                </div>
-                <div class="description">
-                    <p>Репозиторий склонирован в домашнюю директорию, создан каталог <code>~/www/hw2</code>, файлы скопированы в веб-доступное место.</p>
-                </div>
-                <div class="screenshot">
-                    <img src="04.png" alt="Клонирование на сервере">
-                    <p class="caption">Скриншот 04: Клонирование и копирование</p>
-                </div>
-            </div>
-
-            
-            <div class="subtask">
-                <h3>Подготовка HTTP-запросов</h3>
-                <div class="description">
-                    <p>Все запросы для пунктов 1–7 были заранее набраны в текстовом редакторе для удобного копирования в PuTTY.</p>
-                </div>
-                <div class="screenshot">
-                    <img src="05.png" alt="Тексты запросов">
-                    <p class="caption">Скриншот 05: Запросы в блокноте</p>
-                </div>
-            </div>
-
-           
-            <div class="subtask">
-                <h3>Настройка PuTTY для подключения</h3>
-                <div class="description">
-                    <p>Для отправки запросов используется PuTTY в режиме <strong>Raw</strong> (прямое TCP-соединение). Адрес: <code>u82457.kubsu-dev.ru</code>, порт 80.</p>
-                </div>
-                <div class="screenshot">
-                    <img src="06.png" alt="Настройки PuTTY">
-                    <p class="caption">Скриншот 06: Конфигурация PuTTY</p>
-                </div>
-            </div>
-
-            
-            <div class="subtask">
-                <h3>Готовое окно PuTTY</h3>
-                <div class="description">
-                    <p>После открытия соединения появляется пустое окно, готовое для вставки HTTP-запросов (правая кнопка мыши).</p>
-                </div>
-                <div class="screenshot">
-                    <img src="07.png" alt="Пустое окно PuTTY">
-                    <p class="caption">Скриншот 07: Окно PuTTY ожидает запрос</p>
-                </div>
-            </div>
-        </section>
-
-      
-        <section class="task">
-            <h2>Пункт 1. Получить главную страницу методом GET в протоколе HTTP/1.0</h2>
+            <div class="desc">Репозиторий создан, файлы добавлены и отправлены на GitHub.</div>
+            <div class="screenshot"><img src="9.png" alt="Git push"><div class="caption">Скриншот 9: Отправка на GitHub</div></div>
+        </div>
+        <div class="step">
+            <h3>5.3. Генерация SSH-ключа на сервере</h3>
+            <div class="command">ssh-keygen -t ed25519 -C "valerieavetisyan58@gmail.com"</div>
+            <div class="desc">Ключ сгенерирован, публичная часть выведена.</div>
+            <div class="screenshot"><img src="10.png" alt="Генерация ключа"><div class="caption">Скриншот 10: ssh-keygen</div></div>
+            <div class="screenshot"><img src="11.png" alt="Публичный ключ"><div class="caption">Скриншот 11: Просмотр публичного ключа</div></div>
+            <div class="screenshot"><img src="12.png" alt="Добавление ключа на GitHub"><div class="caption">Скриншот 12: Ключ в настройках GitHub</div></div>
+        </div>
+        <div class="step">
+            <h3>5.4. Клонирование репозитория на сервер</h3>
+            <div class="command">git clone git@github.com:Valeria1445/web1.git</div>
+            <div class="desc">Репозиторий склонирован в домашнюю папку.</div>
+            <div class="screenshot"><img src="13.png" alt="Клонирование"><div class="caption">Скриншот 13: git clone</div></div>
+        </div>
+        <div class="step">
+            <h3>5.5. Перенос в каталог www</h3>
             <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>GET / HTTP/1.0</code></pre>
+                <pre>mkdir -p ~/www/w1
+cp -r ~/web1/* ~/www/w1/
+ls ~/www/w1/</pre>
             </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Запрос корневой директории сайта по протоколу HTTP/1.0. Сервер возвращает содержимое, которое в данном случае является стандартной страницей Apache (так как в корне нет индексного файла).</p>
-                <p><strong>Результат (скриншот l1.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 200 OK</code> – запрос выполнен успешно.</li>
-                    <li>Заголовки: <code>Server: Apache/2.4.58 (Ubuntu)</code>, <code>Content-Length: 10671</code>, <code>Content-Type: text/html; charset=UTF-8</code>.</li>
-                    <li>Тело ответа содержит стандартную страницу-заглушку Apache2 Ubuntu Default Page.</li>
-                </ul>
-            </div>
-            <div class="screenshot">
-                <img src="l1.png" alt="GET / HTTP/1.0">
-                <p class="caption">Скриншот 1: GET / HTTP/1.0 </p>
-            </div>
-        </section>
+            <div class="desc">Файлы скопированы в веб-доступный каталог, проверено содержимое.</div>
+            <div class="screenshot"><img src="14.png" alt="Копирование в www"><div class="caption">Скриншот 14: Копирование и список файлов</div></div>
+        </div>
+        <div class="step">
+            <h3>5.6. Проверка доступа к странице</h3>
+            <div class="desc">Страница доступна по адресу <code>http://u82358.kubsu-dev.ru/w1/index.html</code> (проверено визуально).</div>
+        </div>
+    </section>
 
-        
-        <section class="task">
-            <h2>Пункт 2. Получить внутреннюю страницу методом GET в протоколе HTTP/1.1</h2>
-            <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>GET /hw2/index.php HTTP/1.1
-Host: u82457.kubsu-dev.ru
-Connection: close</code></pre>
-            </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Запрашивает файл <code>index.php</code> из каталога <code>/hw2/</code>. Скрипт специально настроен так, что возвращает статус 404, но при этом выполняет код и генерирует тело ответа.</p>
-                <p><strong>Результат (скриншот l2.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 404 Not Found</code> – задан самим скриптом.</li>
-                    <li>Заголовок <code>Content-Type: text/html; charset=UTF-8</code>.</li>
-                    <li>Тело ответа содержит вывод скрипта: <code>Array ( ) Привет, мир!</code> (пустой массив <code>$_POST</code> и строка).</li>
-                </ul>
-                <p><em>Примечание: статус 404 не мешает получению содержимого – задание требует сам факт ответа и его анализ.</em></p>
-            </div>
-            <div class="screenshot">
-                <img src="l2.png" alt="GET /hw2/index.php">
-                <p class="caption">Скриншот 2: GET /hw2/index.php </p>
-            </div>
-        </section>
+    
+    <section class="task">
+        <h2>6. Копирование файлов через SFTP (FileZilla)</h2>
+        <div class="step">
+            <h3>6.1. Настройка подключения</h3>
+            <div class="desc">Указаны параметры: хост <code>kubsu-dev.ru</code>, порт 58528, логин <code>u82358</code>.</div>
+            <div class="screenshot"><img src="15.png" alt="Настройки FileZilla"><div class="caption">Скриншот 15: Параметры подключения</div></div>
+        </div>
+        <div class="step">
+            <h3>6.2. Успешное подключение и просмотр каталогов</h3>
+            <div class="desc">После входа виден удалённый каталог <code>/home/u82358</code>.</div>
+            <div class="screenshot"><img src="16.png" alt="Удалённые каталоги"><div class="caption">Скриншот 16: Подключение и список каталогов</div></div>
+        </div>
+        <div class="step">
+            <h3>6.3. Навигация к папке www/w1</h3>
+            <div class="desc">Открыт каталог <code>/home/u82358/www/w1</code>, видны все файлы.</div>
+            <div class="screenshot"><img src="17.png" alt="Содержимое w1"><div class="caption">Скриншот 17: Файлы в w1</div></div>
+        </div>
+        <div class="step">
+            <h3>6.4. Скачивание файлов на локальный компьютер</h3>
+            <div class="desc">Файлы успешно скопированы (статус «Файл передан успешно»).</div>
+            <div class="screenshot"><img src="18.png" alt="Передача файлов"><div class="caption">Скриншот 18: Скачивание через FileZilla</div></div>
+        </div>
+        <div class="step">
+            <h3>6.5. Обновление репозитория</h3>
+            <div class="desc">Новые скриншоты FileZilla добавлены в Git и отправлены на GitHub.</div>
+            <div class="screenshot"><img src="19.png" alt="git add/commit/push"><div class="caption">Скриншот 19: Второй коммит и push</div></div>
+        </div>
+        <div class="step">
+            <h3>6.6. Обновление файлов на сервере</h3>
+            <div class="desc">На сервере выполнен <code>git pull</code> и повторное копирование в <code>~/www/w1</code>.</div>
+            <div class="screenshot"><img src="20.png" alt="git pull на сервере"><div class="caption">Скриншот 20: Обновление на сервере</div></div>
+        </div>
+    </section>
 
-        
-        <section class="task">
-            <h2>Пункт 3. Определить размер файла file.tar.gz, не скачивая его</h2>
-            <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>HEAD /hw2/file.tar.gz HTTP/1.1
-Host: u82457.kubsu-dev.ru
-Connection: close</code></pre>
-            </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Метод <code>HEAD</code> возвращает только заголовки, без тела. Позволяет узнать размер файла из поля <code>Content-Length</code>.</p>
-                <p><strong>Результат (скриншот l3.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 200 OK</code> – файл существует.</li>
-                    <li>Заголовок <code>Content-Length: 11335</code> – размер файла в байтах.</li>
-                    <li>Тип файла: <code>Content-Type: application/x-gzip</code>.</li>
-                </ul>
-            </div>
-            <div class="screenshot">
-                <img src="l3.png" alt="HEAD /hw2/file.tar.gz">
-                <p class="caption">Скриншот 3: HEAD /hw2/file.tar.gz </p>
-            </div>
-        </section>
-
-        
-        <section class="task">
-            <h2>Пункт 4. Определить медиатип ресурса /image.png</h2>
-            <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>HEAD /hw2/image.png HTTP/1.1
-Host: u82457.kubsu-dev.ru
-Connection: close</code></pre>
-            </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Аналогично пункту 3, определяем MIME-тип изображения.</p>
-                <p><strong>Результат (скриншот l4.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 200 OK</code>.</li>
-                    <li>Заголовок <code>Content-Type: image/png</code> – медиатип PNG.</li>
-                    <li>Размер: <code>Content-Length: 10506</code> байт.</li>
-                </ul>
-            </div>
-            <div class="screenshot">
-                <img src="l4.png" alt="HEAD /hw2/image.png">
-                <p class="caption">Скриншот 4: HEAD /hw2/image.png </p>
-            </div>
-        </section>
-
-        
-        <section class="task">
-            <h2>Пункт 5. Отправить комментарий на сервер по адресу /index.php (POST)</h2>
-            <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>POST /hw2/index.php HTTP/1.1
-Host: u82457.kubsu-dev.ru
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 12
-Connection: close
-
-comment=Hello</code></pre>
-                <p><em>Тело запроса: <code>comment=Hello</code> (длина 12 байт).</em></p>
-            </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Отправляет POST-данные (имитация формы) на <code>index.php</code>. Скрипт возвращает статус 404 (задано в коде), но выводит содержимое массива <code>$_POST</code>.</p>
-                <p><strong>Результат (скриншот l5.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 404 Not Found</code> (задан скриптом).</li>
-                    <li>Заголовок <code>Content-Type: text/html; charset=UTF-8</code>.</li>
-                    <li>Тело ответа: <code>Array ( [comment] => Hell ) Привет, мир!</code> – значение поля <code>comment</code> частично отобразилось (обрезано из-за особенностей вывода).</li>
-                </ul>
-            </div>
-            <div class="screenshot">
-                <img src="l5.png" alt="POST /hw2/index.php">
-                <p class="caption">Скриншот 5: POST /hw2/index.php </p>
-            </div>
-        </section>
-
-        
-        <section class="task">
-            <h2>Пункт 6. Получить первые 100 байт файла /file.tar.gz</h2>
-            <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>GET /hw2/file.tar.gz HTTP/1.1
-Host: u82457.kubsu-dev.ru
-Range: bytes=0-99
-Connection: close</code></pre>
-            </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Заголовок <code>Range</code> запрашивает только указанный диапазон байт – первые 100 байт архива.</p>
-                <p><strong>Результат (скриншот l6.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 206 Partial Content</code> – частичное содержимое.</li>
-                    <li>Заголовок <code>Content-Range: bytes 0-99/11335</code>.</li>
-                    <li><code>Content-Length: 100</code> – длина переданных данных.</li>
-                    <li>Тело содержит первые 100 байт файла (бинарные данные, отображаемые как нечитаемые символы).</li>
-                </ul>
-            </div>
-            <div class="screenshot">
-                <img src="l6.png" alt="GET с Range">
-                <p class="caption">Скриншот 6: GET /hw2/file.tar.gz с Range</p>
-            </div>
-        </section>
-
-        <section class="task">
-            <h2>Пункт 7. Определить кодировку ресурса /index.php</h2>
-            <div class="command">
-                <strong>Запрос:</strong>
-                <pre><code>HEAD /hw2/index.php HTTP/1.1
-Host: u82457.kubsu-dev.ru
-Connection: close</code></pre>
-            </div>
-            <div class="description">
-                <p><strong>Что делает:</strong> Запрос HEAD для получения только заголовков. Позволяет узнать кодировку из поля <code>Content-Type</code>.</p>
-                <p><strong>Результат (скриншот l7.png):</strong></p>
-                <ul>
-                    <li>Статус: <code>HTTP/1.1 404 Not Found</code> (задан скриптом).</li>
-                    <li>Заголовок <code>Content-Type: text/html; charset=UTF-8</code> – кодировка <strong>UTF-8</strong> указана явно.</li>
-                </ul>
-            </div>
-            <div class="screenshot">
-                <img src="l7.png" alt="HEAD /hw2/index.php">
-                <p class="caption">Скриншот 7: HEAD /hw2/index.php</p>
-            </div>
-        </section>
-
-        
-        <section class="task">
-            <h2>Обновление репозитория и сервера после выполнения всех пунктов</h2>
-
-            <div class="subtask">
-                <h3>Добавление новых скриншотов в Git (локально)</h3>
-                <div class="description">
-                    <p>После выполнения всех запросов и создания дополнительных скриншотов (02–07, 11000000.png и др.) они были добавлены в локальный репозиторий, закоммичены и отправлены на GitHub.</p>
-                </div>
-                <div class="screenshot">
-                    <img src="f1.png" alt="git add, commit, push">
-                    <p class="caption">Скриншот f1: Добавление новых файлов и push</p>
-                </div>
-            </div>
-
-            <div class="subtask">
-                <h3>Обновление файлов на сервере</h3>
-                <div class="description">
-                    <p>На сервере выполнен <code>git pull</code> в папке с репозиторием (на скриншоте видна опечатка <code>web-hwl</code>, но фактически команда выполнена в правильной директории). После получения обновлений файлы скопированы в каталог <code>~/www/hw2</code> (на скриншоте также опечатка <code>hwl</code>, но команда отработала корректно).</p>
-                </div>
-                <div class="screenshot">
-                    <img src="f2.png" alt="git pull и копирование">
-                    <p class="caption">Скриншот f2: Обновление на сервере</p>
-                </div>
-            </div>
-        </section>
-
-    </div>
+   
+</div>
 </body>
 </html>
